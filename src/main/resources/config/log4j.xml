@@ -9,9 +9,31 @@
             <param name="ConversionPattern" value="%d{ISO8601}: %p [%t] %C{1} %X{ProcessId}: %m%n" />
         </layout>
     </appender>
-
+    
+      <appender name="MAIL" class="org.apache.log4j.net.SMTPAppender">
+		    <param name="BufferSize" value="1024" />
+	        <param name="SMTPHost" value="smtp.gmail.com" />
+	        <param name="SMTPPort" value="587" />
+	        <param name="SMTPUsername" value="arulprakashst@gmail.com" />
+	        <param name="SMTPPassword" value="Dharsh532" />
+	        <param name="From" value="arulprakash2k8@yahoo.com" />
+	        <param name="To" value="arulprakashst@gmail.com" />
+	        <param name="TLS" value="true"/>
+	        <param name="SMTPDebug" value="true" />
+	        <param name="Subject" value="Testing Log4j mail notification" />
+	        <param name="TimeFrame" value="10"/>
+	        <param name="MaxEMails" value="2"/>
+	        <layout class="org.apache.log4j.PatternLayout">
+	            <param name="ConversionPattern" value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" />
+	        </layout>
+	        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+	            <param name="LevelMin" value="error" />
+	            <param name="LevelMax" value="fatal" />
+	        </filter>
+	  </appender>
+	   
     <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="File" value="d:/logs/pos.log"/>
+        <param name="File" value="${log4j.logs}"/>
         <param name="MaxFileSize" value="100MB"/>
         <param name="MaxBackupIndex" value="5"/>
         <layout class="org.apache.log4j.PatternLayout">
@@ -22,42 +44,57 @@
     <logger name="com.pos" additivity="false">
         <level value="ALL" />
         <appender-ref ref="CONSOLE"/>
-        <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MAIL"/>
     </logger>
 
+    <logger name="org.apache" additivity="false">
+        <level value="DEBUG" />
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MAIL"/>
+    </logger>
+    
     <logger name="org.springframework" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="CONSOLE"/>
-        <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MAIL"/>
     </logger>
 
     <logger name="org.springframework.aop.interceptor.CustomizableTraceInterceptor" additivity="false">
         <level value="OFF" />
         <appender-ref ref="CONSOLE"/>
-        <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MAIL"/>
     </logger>
 
     <logger name="org.hibernate.SQL" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="CONSOLE"/>
-        <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MAIL"/>
     </logger>
 
     <logger name="org.hibernate.type" additivity="false">
         <level value="TRACE" />
         <appender-ref ref="CONSOLE"/>
-        <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="MAIL"/>
     </logger>
 
     <logger name="org.mortbay.log" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="CONSOLE"/>
-       <!--<appender-ref ref="CONSOLE"/>-->
+        <appender-ref ref="FILE"/>
+       <appender-ref ref="MAIL"/>
     </logger>
 
     <root>
         <level value="INFO" />
         <appender-ref ref="CONSOLE" />
+        <appender-ref ref="MAIL" />
+        <appender-ref ref="FILE"/>
     </root>
 
 </log4j:configuration>

@@ -179,7 +179,46 @@
 		    <scope>compile</scope>
 		</dependency>-->
 
-	</dependencies>
+</dependencies>
+
+ <profiles>
+    <profile>
+        <id>dev</id>        
+         <properties>
+             <log4j.logs>d:/logs/posext.log</log4j.logs>
+             <target.directory>d:/logs/dist</target.directory>
+         </properties>
+   
+         <build>
+             <directory>${target.directory}</directory>
+             <resources>
+               <resource>
+                 <directory>src/main/resources</directory>                  
+                 <filtering>true</filtering>
+               </resource>
+             </resources>
+         </build>
+     </profile>
+     
+     <profile>
+        <id>prod</id>        
+         <properties>
+             <log4j.logs>/var/lib/openshift/54502be45004461f8900024a/app-deployments/logs/posext.log</log4j.logs>
+             <target.directory>/var/lib/openshift/54502be45004461f8900024a/app-deployments/dist</target.directory>
+         </properties>
+   
+         <build>
+             <directory>${target.directory}</directory>
+             <resources>
+               <resource>
+                 <directory>src/main/resources</directory>                  
+                 <filtering>true</filtering>
+               </resource>
+             </resources>
+         </build>
+     </profile>
+  </profiles>
+  
   <build>
     <finalName>posext</finalName>
 	<plugins>
@@ -216,45 +255,7 @@
                </connector>
              </connectors>
           </configuration>
-          <!-- <executions>
-		    <execution>
-		      <id>start-jetty</id>
-		      <phase>pre-integration-test</phase>
-		      <goals>
-		        <goal>start</goal>
-		      </goals>
-		      <configuration>
-		       <scanIntervalSeconds>0</scanIntervalSeconds>
-		       <daemon>true</daemon>
-		      </configuration>
-		    </execution>
-		    <execution>
-		      <id>stop-jetty</id>
-		      <phase>post-integration-test</phase>
-		      <goals>
-		        <goal>stop</goal>
-		      </goals>
-		    </execution>
-		  </executions> -->
 		</plugin>
-		
-	
-		<!-- <plugin>
-	      <groupId>org.mortbay.jetty</groupId>
-	      <artifactId>jetty-maven-plugin</artifactId>
-	      <configuration>
-	        <scanIntervalSeconds>10</scanIntervalSeconds>
-	        <webApp>
-	          <contextPath>/</contextPath>
-	        </webApp>
-	        <connectors>
-	           <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-	              <port>9090</port>
-	              <maxIdleTime>60000</maxIdleTime>
-	           </connector>
-	         </connectors>
-	      </configuration>
-	    </plugin> -->
 	</plugins>
   </build>
 </project>

@@ -37,11 +37,12 @@ public class HomeController {
 	 * @param request request
 	 * @param response response
 	 * @return ModelAndView ModelAndView
+	 * @throws Exception 
 	 */
 	@RequestMapping("/login")
-	public ModelAndView helloWorld(HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView helloWorld(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		logger.debug("Entering helloWorld");
-		ModelAndView model = new ModelAndView(".upload");
+		ModelAndView model = new ModelAndView(".home");
 		return model;
 	}
 	@RequestMapping(value="/upload")
@@ -50,6 +51,17 @@ public class HomeController {
         return new ModelAndView(".upload");
     }
     
+	@RequestMapping(value="/email")
+    public ModelAndView email(HttpServletResponse response) throws Exception{        
+	    try {
+            // Generate exception
+            throw new Exception("Generating exception to test Log4j mail notification...");
+        } catch (Exception ex) {
+            logger.error("Test Result : ", ex);
+        }
+	    return null;
+    }
+	
     @RequestMapping(value="/importFile", method = RequestMethod.POST)
     public ModelAndView importFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
         
