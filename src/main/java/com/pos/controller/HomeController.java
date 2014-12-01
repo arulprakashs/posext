@@ -1,7 +1,10 @@
 /**
  * 
  */
-package com.pos;
+package com.pos.controller;
+
+import com.pos.domain.User;
+import com.pos.repositories.UserRepository;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +18,7 @@ import org.apache.commons.fileupload.DiskFileUpload;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUpload;
 import org.apache.commons.fileupload.FileUploadException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 
 
 /**
@@ -33,6 +38,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class HomeController {
 
 	public static Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	
+	@Autowired
+    private UserRepository repository;
+	
 	/**
 	 * @param request request
 	 * @param response response
@@ -43,6 +53,7 @@ public class HomeController {
 	public ModelAndView helloWorld(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		logger.debug("Entering helloWorld");
 		ModelAndView model = new ModelAndView(".home");
+		
 		return model;
 	}
 	@RequestMapping(value="/upload")
@@ -136,8 +147,21 @@ public class HomeController {
         list.add(map);*/
         
         //String str= mapper.writeValueAsString(list);
-        String str = "{\"Objects\" :[{\"id\":2999,\"name\":\"Som Awasthi\"},{\"id\":3000,\"name\":\"Arnav Awasthi\"},{\"id\":\"123\",\"name\":\"Arul\"}], \"objectCount\" : 100}";
-        response.getWriter().write(str);    
+        
+        //String str = "{\"Objects\" :[{\"id\":2999,\"name\":\"Som Awasthi\"},{\"id\":3000,\"name\":\"Arnav Awasthi\"},{\"id\":\"123\",\"name\":\"Arul\"}], \"objectCount\" : 100}";
+        //response.getWriter().write(str);  
+        
+        long id = 101;
+        String userName = "Arul";
+        //User user = repository.findById(id);
+        List<User> userList = repository.findAll();
+        //User user = repository.findByUserName(userName);
+        ObjectMapper mapper = new ObjectMapper();
+        
+        //response.getWriter().write("{\"items\":"+userList.toString() + "}");
+        
+        response.getWriter().write("{\"items\":" +mapper.writeValueAsString(userList)+ "}");
+        
         return null;
     }
 }

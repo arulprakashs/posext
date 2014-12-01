@@ -11,7 +11,7 @@
  
         this.columns = [
             {header: 'id',  dataIndex: 'id'},
-            {header: 'name',  dataIndex: 'name'}
+            {header: 'name',  dataIndex: 'userName'}
         ];
    
         this.callParent(arguments);
