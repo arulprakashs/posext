@@ -64,7 +64,7 @@
 	
 	<mvc:resources mapping="/**"
                location="/static/" 
-               cache-period="31556926" />
+               cache-period="0" />
                
    <!--  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	  <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />

@@ -3,6 +3,7 @@
  */
 package com.pos.controller;
 
+import com.pos.domain.UIResponse;
 import com.pos.domain.User;
 import com.pos.repositories.UserRepository;
 
@@ -21,12 +22,11 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 
 
 /**
@@ -135,33 +135,16 @@ public class HomeController {
     @RequestMapping(value="/getData")
     public ModelAndView getData(HttpServletResponse response) throws IOException{
     
-        /*ObjectMapper mapper = new ObjectMapper();
-        
-        Map map = new HashMap<String,String>();
-        map.put("username", "username");
-        map.put("isAdmin", "isAdmin");
-        map.put("authenticated", "authenticated");
-        map.put("loggedOut", "loggedOut");
-        
-        List list = new ArrayList<Map>();
-        list.add(map);*/
-        
-        //String str= mapper.writeValueAsString(list);
-        
-        //String str = "{\"Objects\" :[{\"id\":2999,\"name\":\"Som Awasthi\"},{\"id\":3000,\"name\":\"Arnav Awasthi\"},{\"id\":\"123\",\"name\":\"Arul\"}], \"objectCount\" : 100}";
-        //response.getWriter().write(str);  
-        
+     
         long id = 101;
-        String userName = "Arul";
+        String userName = "test";
         //User user = repository.findById(id);
         List<User> userList = repository.findAll();
+        UIResponse uiResponse = new UIResponse();
+        uiResponse.setList(userList);
         //User user = repository.findByUserName(userName);
         ObjectMapper mapper = new ObjectMapper();
-        
-        //response.getWriter().write("{\"items\":"+userList.toString() + "}");
-        
-        response.getWriter().write("{\"items\":" +mapper.writeValueAsString(userList)+ "}");
-        
+        response.getWriter().write(mapper.writeValueAsString(uiResponse));
         return null;
     }
 }
