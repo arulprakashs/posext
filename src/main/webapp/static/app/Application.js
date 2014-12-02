@@ -1,4 +1,4 @@
-Ext.define('pos.Application', {
+/*Ext.define('pos.Application', {
     name: 'pos',
 
     extend: 'Ext.app.Application',
@@ -17,3 +17,4 @@ Ext.define('pos.Application', {
     	'Users'
     ]
 });
+*/
