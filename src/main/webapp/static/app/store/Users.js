@@ -8,7 +8,7 @@ Ext.define('pos.store.Users', {
         url : 'http://localhost:8080/home/getData',
         reader: {
             type: 'json',           
-            root: 'items'
+            root: 'list'
         }
     }
 });
