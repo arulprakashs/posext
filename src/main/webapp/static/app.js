@@ -30,7 +30,8 @@ Ext.application({
     launch : function(){
     	Ext.create('Ext.panel.Panel', {
             layout: 'fit',
-            renderTo: 'login-gird',
+            width : 200,
+            renderTo: 'login-grid',
             items: [
                 {
                     xtype:'logindisplay'                

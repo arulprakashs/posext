@@ -13,7 +13,7 @@
     <body>
         <h1>Hello World!</h1>
         <p>This is the homepage!</p>
-        <div id="login-gird"/>
+        <div id="login-grid"/>
       
     </body>
 </html>
