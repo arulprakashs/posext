@@ -34,7 +34,7 @@
 	   
     <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="File" value="${log4j.logs}"/>
-        <param name="MaxFileSize" value="100MB"/>
+        <param name="MaxFileSize" value="10MB"/>
         <param name="MaxBackupIndex" value="5"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d{ISO8601}: %p [%t] %C{1} %X{ProcessId}: %m%n" />

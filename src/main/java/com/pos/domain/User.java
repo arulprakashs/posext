@@ -48,10 +48,4 @@ public class User {
         this.userName = userName;
     }
     
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-       // ObjectMapper mapper = new ObjectMapper();
-        //return +mapper.writeValueAsString(user);
-    }
 }
