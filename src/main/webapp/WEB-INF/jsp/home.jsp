@@ -6,9 +6,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/resources/ext-theme-classic/ext-theme-classic-all.css'>         
+        <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/ext/resources/ext-theme-classic/ext-theme-classic-all.css'>         
         <script src='${pageContext.request.contextPath}/ext/ext-all.js'></script>
-		<script src='${pageContext.request.contextPath}/app.js'></script>
+		<%-- <script src='${pageContext.request.contextPath}/resources/js/app.js'></script> --%>
+		<script src='${pageContext.request.contextPath}/js/app.js'></script>
     </head>
     <body>
         <h1>Hello World!</h1>
