@@ -144,6 +144,7 @@ public class HomeController {
         uiResponse.setList(userList);
         //User user = repository.findByUserName(userName);
         ObjectMapper mapper = new ObjectMapper();
+        response.setContentType("text/javascript");
         response.getWriter().write(mapper.writeValueAsString(uiResponse));
         return null;
     }
