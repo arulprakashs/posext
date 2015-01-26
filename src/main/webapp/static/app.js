@@ -1,7 +1,10 @@
+Ext.Loader.setConfig({
+    disableCaching: false
+});
 
 Ext.application({
     name: 'pos',
-    appFolder : '/app',
+    appFolder : '/posext/app',
     //extend: 'pos.Application',
     
     extend: 'Ext.app.Application',
