@@ -3,8 +3,12 @@
  */
 package com.pos.controller;
 
+import com.pos.domain.Company;
+import com.pos.domain.Company2;
+import com.pos.domain.CompanyDTO;
 import com.pos.domain.UIResponse;
 import com.pos.domain.User;
+import com.pos.repositories.CompanyRepository;
 import com.pos.repositories.UserRepository;
 
 import java.io.File;
@@ -24,8 +28,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -41,7 +49,11 @@ public class HomeController {
 	
 	
 	@Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
+	
+	
+	@Autowired
+    private CompanyRepository companyRepository;
 	
 	/**
 	 * @param request request
@@ -139,7 +151,7 @@ public class HomeController {
         long id = 101;
         String userName = "test";
         //User user = repository.findById(id);
-        List<User> userList = repository.findAll();
+        List<User> userList = userRepository.findAll();
         UIResponse uiResponse = new UIResponse();
         uiResponse.setList(userList);
         //User user = repository.findByUserName(userName);
@@ -148,4 +160,47 @@ public class HomeController {
         response.getWriter().write(mapper.writeValueAsString(uiResponse));
         return null;
     }
+    
+    @RequestMapping(value="/getGridData", method = { RequestMethod.GET}, produces = "application/json")
+    @ResponseStatus(org.springframework.http.HttpStatus.OK)
+    @ResponseBody
+    public UIResponse getGridData(
+    		/*@RequestBody Company company,*/
+    	    javax.servlet.http.HttpServletRequest request,
+    	    javax.servlet.http.HttpServletResponse response) throws IOException{     
+        List<Company> userList = companyRepository.findAll();
+        UIResponse uiResponse = new UIResponse();
+        uiResponse.setSuccess(true);
+        uiResponse.setList(userList);
+        return uiResponse;
+    }
+    
+    @RequestMapping(value="/getGridDataUpdate", method = { RequestMethod.POST }, headers = {"Content-type=application/json"}, consumes = "application/json")
+    @ResponseStatus(org.springframework.http.HttpStatus.OK)
+    @ResponseBody
+    public UIResponse getGridDataUpdate(
+    		/*@PathVariable("transId") Integer transId,*/
+    		@RequestBody CompanyDTO records,
+    	    javax.servlet.http.HttpServletRequest request,
+    	    javax.servlet.http.HttpServletResponse response) throws IOException{     
+        List<Company> userList = companyRepository.findAll();
+        UIResponse uiResponse = new UIResponse();
+        //uiResponse.setList(userList);
+        return uiResponse;
+    }
+    
+    @RequestMapping(value="/getGridDetailData", method = { RequestMethod.POST }, headers = {"Content-type=application/json"}, consumes = "application/json")
+    @ResponseStatus(org.springframework.http.HttpStatus.OK)
+    @ResponseBody
+    public UIResponse getGridDetailData(
+    		@RequestBody Company2 company,
+    	    javax.servlet.http.HttpServletRequest request,
+    	    javax.servlet.http.HttpServletResponse response) throws IOException{     
+        List<Company> userList = companyRepository.findAll();
+        UIResponse uiResponse = new UIResponse();
+        uiResponse.setSuccess(true);
+        //uiResponse.setList(userList);
+        return uiResponse;
+    }
+    
 }

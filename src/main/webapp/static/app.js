@@ -6,14 +6,14 @@ Ext.application({
     name: 'pos',
     appFolder : '/posext/app',
     //extend: 'pos.Application',
-    
+    autoCreateViewPort:false,
     extend: 'Ext.app.Application',
 
     views: [
             // TODO: add views here
         	'Display'
     ],
-
+    
     controllers: [
         'Login'
     ],

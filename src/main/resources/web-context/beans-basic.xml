@@ -80,6 +80,23 @@
         </property>
     </bean>
     
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean
+                    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="prefixJson" value="false"/>
+                    <property name="supportedMediaTypes" value="application/json"/>
+                    <property name="objectMapper">
+                      <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                          <property name="serializationInclusion" value="NON_NULL"/>
+                     </bean>
+                    </property>
+                 </bean>
+            </list>
+          </property>
+    </bean>
+    
     <bean id="tilesConfigurer"
         class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
         <property name="definitions">

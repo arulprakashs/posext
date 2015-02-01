@@ -6,7 +6,8 @@
 
 <tiles-definitions>
 
-	<definition name=".home" template="/WEB-INF/jsp/billing.jsp"/>
+	<definition name=".home" template="/WEB-INF/jsp/editablegrid.jsp"/>
+	<definition name=".home3" template="/WEB-INF/jsp/billing.jsp"/>
 	<definition name=".home2" template="/WEB-INF/jsp/home.jsp"/>
 	<definition name=".upload" template="/WEB-INF/jsp/upload.jsp"/>
 	
