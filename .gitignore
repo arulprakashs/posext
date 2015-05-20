@@ -1,10 +1,14 @@
-.classpath
-.project
-target/
+**/.classpath/**
+**/.project/**
+**/target/**
 bin/
-.settings/
-.idea/
+**/.settings/**
+**/.idea/**
 *.iml
 *.log
+*.project
+*/.settings/*
+/.classpath/
+/.settings/
 
 
